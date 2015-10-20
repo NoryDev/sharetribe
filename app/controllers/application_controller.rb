@@ -31,7 +31,8 @@ class ApplicationController < ActionController::Base
     :fetch_community_admin_status,
     :fetch_community_plan_expiration_status,
     :warn_about_missing_payment_info,
-    :set_homepage_path
+    :set_homepage_path,
+    :report_queue_size
   before_filter :cannot_access_without_joining, :except => [ :confirmation_pending, :check_email_availability]
   before_filter :can_access_only_organizations_communities
   before_filter :check_email_confirmation, :except => [ :confirmation_pending, :check_email_availability_and_validity]
@@ -165,6 +166,7 @@ class ApplicationController < ActionController::Base
   def fetch_logged_in_user
     if person_signed_in?
       @current_user = current_person
+      setup_logger!(user_id: @current_user.id, username: @current_user.username)
     end
   end
 
@@ -210,6 +212,9 @@ class ApplicationController < ActionController::Base
   # Before filter to get the current community
   def fetch_community
     @current_community = ApplicationController.find_community(community_identifiers)
+
+    m_community = Maybe(@current_community)
+    setup_logger!(marketplace_id: m_community.id.or_else(nil), marketplace_ident: m_community.ident.or_else(nil))
 
     # Save :found or :not_found to community status
     # This is needed because we need to distinguish to cases
@@ -396,6 +401,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def report_queue_size
+    MonitoringService::Monitoring.report_queue_size
+  end
+
   private
 
   # Override basic instrumentation and provide additional info for lograge to consume
@@ -405,7 +414,7 @@ class ApplicationController < ActionController::Base
     payload[:host] = request.host
     payload[:community_id] = Maybe(@current_community).id.or_else("")
     payload[:current_user_id] = Maybe(@current_user).id.or_else("")
-    payload[:request_uuid] = request.env["HTTP_X_REQUEST_ID"]
+    payload[:request_uuid] = request.uuid
   end
 
   def date_equals?(date, comp)
@@ -498,6 +507,20 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method :fetch_feature_flags # Make this method available for FeatureFlagHelper
+
+  def logger
+    if @logger.nil?
+      metadata = [:marketplace_id, :marketplace_ident, :user_id, :username, :request_uuid]
+      @logger = SharetribeLogger.new(:controller, metadata)
+      @logger.add_metadata(request_uuid: request.uuid)
+    end
+
+    @logger
+  end
+
+  def setup_logger!(metadata)
+    logger.add_metadata(metadata)
+  end
 
   # Fetch temporary flags from params and session
   def self.fetch_temp_flags(is_admin, params, session)

@@ -42,7 +42,26 @@ class ListingsController < ApplicationController
 
           # Returns the listings for one person formatted for profile page view
           per_page = params[:per_page] || 200 # the point is to show all here by default
-          render :partial => "listings/profile_listings", :locals => {:person => @person, :limit => per_page}
+          includes = [:author, :listing_images]
+          include_closed = @person == @current_user
+          search = {
+            author_id: @person.id,
+            include_closed: include_closed,
+            page: 1,
+            per_page: per_page
+          }
+
+          listings = ListingIndexService::API::Api.listings.search(community_id: @current_community.id, search: search, includes: includes).and_then { |res|
+            Result::Success.new(
+              ListingIndexViewUtils.to_struct(
+              result: res,
+              includes: includes,
+              page: search[:page],
+              per_page: search[:per_page]
+            ))
+          }.data
+
+          render :partial => "listings/profile_listings", :locals => {person: @person, limit: per_page, listings: listings}
         else
           redirect_to root
         end
@@ -142,6 +161,7 @@ class ListingsController < ApplicationController
     payment_gateway = MarketplaceService::Community::Query.payment_type(@current_community.id)
     process = get_transaction_process(community_id: @current_community.id, transaction_process_id: @listing.transaction_process_id)
     form_path = new_transaction_path(listing_id: @listing.id)
+    community_country_code = LocalizationUtils.valid_country_code(@current_community.country)
 
     delivery_opts = delivery_config(@listing.require_shipping_address, @listing.pickup_enabled, @listing.shipping_price, @listing.shipping_price_additional, @listing.currency)
 
@@ -151,7 +171,8 @@ class ListingsController < ApplicationController
              # TODO I guess we should not need to know the process in order to show the listing
              process: process,
              delivery_opts: delivery_opts,
-             listing_unit_type: @listing.unit_type
+             listing_unit_type: @listing.unit_type,
+             country_code: community_country_code
            }
   end
 
@@ -198,9 +219,7 @@ class ListingsController < ApplicationController
   end
 
   def create
-    if params[:listing][:origin_loc_attributes][:address].empty? || params[:listing][:origin_loc_attributes][:address].blank?
-      params[:listing].delete("origin_loc_attributes")
-    end
+    params[:listing].delete("origin_loc_attributes") if params[:listing][:origin_loc_attributes][:address].blank?
 
     shape = get_shape(Maybe(params)[:listing][:listing_shape_id].to_i.or_else(nil))
 
@@ -233,7 +252,14 @@ class ListingsController < ApplicationController
       if @listing.save
         upsert_field_values!(@listing, params[:custom_fields])
 
-        listing_image_ids = params[:listing_images].collect { |h| h[:id] }.select { |id| id.present? }
+        listing_image_ids =
+          if params[:listing_images]
+            params[:listing_images].collect { |h| h[:id] }.select { |id| id.present? }
+          else
+            logger.error("Listing images array is missing", nil, {params: params})
+            []
+          end
+
         ListingImage.where(id: listing_image_ids, author_id: @current_user.id).update_all(listing_id: @listing.id)
 
         Delayed::Job.enqueue(ListingCreatedJob.new(@listing.id, @current_community.id))
@@ -247,7 +273,7 @@ class ListingsController < ApplicationController
         ).html_safe
         redirect_to @listing, status: 303 and return
       else
-        Rails.logger.error "Errors in creating listing: #{@listing.errors.full_messages.inspect}"
+        logger.error("Errors in creating listing: #{@listing.errors.full_messages.inspect}")
         flash[:error] = t(
           "layouts.notifications.listing_could_not_be_saved",
           :contact_admin_link => view_context.link_to(t("layouts.notifications.contact_admin_link_text"), new_user_feedback_path, :class => "flash-error-link")
@@ -340,7 +366,7 @@ class ListingsController < ApplicationController
       Delayed::Job.enqueue(ListingUpdatedJob.new(@listing.id, @current_community.id))
       redirect_to @listing
     else
-      Rails.logger.error "Errors in editing listing: #{@listing.errors.full_messages.inspect}"
+      logger.error("Errors in editing listing: #{@listing.errors.full_messages.inspect}")
       flash[:error] = t("layouts.notifications.listing_could_not_be_saved", :contact_admin_link => view_context.link_to(t("layouts.notifications.contact_admin_link_text"), new_user_feedback_path, :class => "flash-error-link")).html_safe
       redirect_to edit_listing_path(@listing)
     end
@@ -350,6 +376,7 @@ class ListingsController < ApplicationController
     process = get_transaction_process(community_id: @current_community.id, transaction_process_id: @listing.transaction_process_id)
 
     payment_gateway = MarketplaceService::Community::Query.payment_type(@current_community.id)
+    community_country_code = LocalizationUtils.valid_country_code(@current_community.country)
 
     @listing.update_attribute(:open, false)
     respond_to do |format|
@@ -357,7 +384,7 @@ class ListingsController < ApplicationController
         redirect_to @listing
       }
       format.js {
-        render :layout => false, locals: {payment_gateway: payment_gateway, process: process}
+        render :layout => false, locals: {payment_gateway: payment_gateway, process: process, country_code: community_country_code }
       }
     end
   end
@@ -370,7 +397,7 @@ class ListingsController < ApplicationController
       redirect_to homepage_index_path
     else
       flash[:warning] = "An error occured while trying to move the listing to the top of the homepage"
-      Rails.logger.error "An error occured while trying to move the listing (id=#{Maybe(@listing).id.or_else('No id available')}) to the top of the homepage"
+      logger.error("An error occured while trying to move the listing (id=#{Maybe(@listing).id.or_else('No id available')}) to the top of the homepage")
       redirect_to @listing
     end
   end
@@ -382,7 +409,7 @@ class ListingsController < ApplicationController
     if @listing.update_attribute(:updates_email_at, Time.now)
       render :nothing => true, :status => 200
     else
-      Rails.logger.error "An error occured while trying to move the listing (id=#{Maybe(@listing).id.or_else('No id available')}) to the top of the homepage"
+      logger.error("An error occured while trying to move the listing (id=#{Maybe(@listing).id.or_else('No id available')}) to the top of the homepage")
       render :nothing => true, :status => 500
     end
   end
@@ -430,6 +457,8 @@ class ListingsController < ApplicationController
           0
         end
 
+      community_country_code = LocalizationUtils.valid_country_code(@current_community.country)
+
       commission(@current_community, process).merge({
         shape: shape,
         unit_options: unit_options,
@@ -437,7 +466,8 @@ class ListingsController < ApplicationController
         shipping_enabled: @listing.require_shipping_address?,
         pickup_enabled: @listing.pickup_enabled?,
         shipping_price_additional: shipping_price_additional,
-        always_show_additional_shipping_price: shape[:units].length == 1 && shape[:units].first[:kind] == :quantity
+        always_show_additional_shipping_price: shape[:units].length == 1 && shape[:units].first[:kind] == :quantity,
+        paypal_fees_url: PaypalHelper.fee_link(community_country_code)
       })
     else
       nil
@@ -571,7 +601,11 @@ class ListingsController < ApplicationController
 
     unless @listing.visible_to?(@current_user, @current_community) || (@current_user && @current_user.has_admin_rights_in?(@current_community))
       if @current_user
-        flash[:error] = t("layouts.notifications.you_are_not_authorized_to_view_this_content")
+        if @listing.closed?
+          flash[:error] = t("layouts.notifications.listing_closed")
+        else
+          flash[:error] = t("layouts.notifications.you_are_not_authorized_to_view_this_content")
+        end
         redirect_to root and return
       else
         session[:return_to] = request.fullpath

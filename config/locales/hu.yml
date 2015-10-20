@@ -238,6 +238,7 @@ hu:
         ban_user: ~
         saving_user_status: ~
         save_user_status_successful: ~
+        export_all_as_csv: ~
         save_user_status_error: ~
         ban_user_confirmation: ~
         ban_me_error: ~
@@ -276,6 +277,7 @@ hu:
         url: ~
         empty: ~
       transactions:
+        export_all_as_csv: ~
         transactions: ~
         headers:
           conversation: ~
@@ -601,7 +603,7 @@ hu:
     new:
       offer_message_form_title: ~
       request_message_form_title: ~
-      favor_offer_message_form_title: "Segítséget kérek innen: %{person}"
+      favor_offer_message_form_title: "Segítséget kérek tőle: %{person}"
       favor_request_message_form_title: "Segítek neki: %{person}"
       housing_offer_message_form_title: ~
       housing_request_message_form_title: ~
@@ -850,8 +852,8 @@ hu:
       has_rejected_your_offer: ~
       has_rejected_your_request: ~
       view_thread: ~
-      your_offer_was_accepted: Elfogadva
-      your_offer_was_rejected: Elutasítva
+      your_offer_was_accepted: "Ajánlat elfogadva"
+      your_offer_was_rejected: "Ajánlat elutasítva"
       your_request_was_accepted: Elfogadva
       your_request_was_rejected: Elutasítva
       you_can_now_pay_to: ~
@@ -1171,6 +1173,8 @@ hu:
       list_button: ~
       all_listing_types: ~
       all_categories: ~
+    errors:
+      search_engine_not_responding: ~
   infos:
     about:
       default_about_text_title: ~
@@ -1324,6 +1328,7 @@ hu:
       you_are_not_allowed_to_give_feedback_on_this_transaction: ~
       you_are_not_authorized_to_do_this: ~
       you_are_not_authorized_to_view_this_content: ~
+      listing_closed: ~
       send_instructions: ~
       you_cannot_reply_to_a_closed_offer: ~
       you_cannot_reply_to_a_closed_request: ~
@@ -1372,6 +1377,8 @@ hu:
     comment:
       wrote: ~
       send_private_message: ~
+      delete: ~
+      are_you_sure: ~
     comment_form:
       ask_a_question: "Írj hozzászólást vagy vedd fel a kapcsolatot az eladóval, ha kérdésed van. Hozzászólásódát valamennyi felhasználó olvashatja."
       log_in: ~
@@ -1392,6 +1399,8 @@ hu:
       show_in_updates_email_loading: Töltés...
       show_in_updates_email_error: ~
       show_in_updates_email_success: ~
+    map:
+      open_in_google_maps: ~
     error:
       something_went_wrong: ~
     follow_links:
@@ -1425,17 +1434,22 @@ hu:
         googlemap_updatemap: ~
       images:
         image: ~
+        best_result: ~
         no_file_selected: ~
         remove_image: ~
         select_file: ~
+        add_more: ~
         removing: ~
         processing: ~
         loading_image: Töltés...
+        image_uploading_in_progress: ~
+        processing_takes_a_while: ~
         this_may_take_a_while: ~
         percentage_loaded: ~
         uploading_failed: "A kép feltöltése sikertelen"
         file_too_large: ~
         accepted_formats: ~
+        images_not_uploaded_confirm: ~
       location:
         location: ~
       price:
@@ -1535,6 +1549,7 @@ hu:
       booking_from: ~
       booking_to: ~
       how_paypal_works: ~
+      payment_help: ~
     new:
       post_a_new_listing: ~
       listing: ~

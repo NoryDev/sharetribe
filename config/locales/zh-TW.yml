@@ -248,6 +248,7 @@ zh-TW:
         ban_user: 禁止用户
         saving_user_status: 正在保存……
         save_user_status_successful: 已保存
+        export_all_as_csv: ~
         save_user_status_error: 保存失败。请刷新页面后重试。
         ban_user_confirmation: 这将会把用户从集市中删除并阻止他们使用这个帐号再次访问该站点。你确认要继续吗？
         ban_me_error: 你不能禁止自己。
@@ -286,6 +287,7 @@ zh-TW:
         url: 网址
         empty: 你没有更多的菜单链接
       transactions:
+        export_all_as_csv: ~
         transactions: 查看交易记录
         headers:
           conversation: 会话
@@ -1191,6 +1193,8 @@ zh-TW:
       list_button: 列表
       all_listing_types: 全部类型 
       all_categories: 全部分类
+    errors:
+      search_engine_not_responding: ~
   infos:
     about:
       default_about_text_title: 什么是Sharetribe？
@@ -1344,6 +1348,7 @@ zh-TW:
       you_are_not_allowed_to_give_feedback_on_this_transaction: 你没有对此事件发表评价的权限
       you_are_not_authorized_to_do_this: 你没有权限进行此操作
       you_are_not_authorized_to_view_this_content: 你没有查看此内容的权限
+      listing_closed: ~
       send_instructions: 几分钟内你将会收到一封电子邮件告知你重置密码。
       you_cannot_reply_to_a_closed_offer: 你不能对已关闭的宝贝发表评论
       you_cannot_reply_to_a_closed_request: 你不能回复已关闭请求
@@ -1392,6 +1397,8 @@ zh-TW:
     comment:
       wrote: 写到
       send_private_message: "发送私人消息给%{person}"
+      delete: ~
+      are_you_sure: ~
     comment_form:
       ask_a_question: 评论该条信息或者询问更多细节。所有其他用户都能看到你的评论。
       log_in: 登录
@@ -1412,6 +1419,8 @@ zh-TW:
       show_in_updates_email_loading: 加载……
       show_in_updates_email_error: 不能访问服务器。页面刷新后重试。
       show_in_updates_email_success: 这个发布的信息将被显示在下一封自动发送给用户的邮件中。
+    map:
+      open_in_google_maps: ~
     error:
       something_went_wrong: "出错了，错误代码：%{error_code}"
     follow_links:
@@ -1445,17 +1454,22 @@ zh-TW:
         googlemap_updatemap: 更新地图
       images:
         image: 图片
+        best_result: ~
         no_file_selected: 未选择文件
         remove_image: 移除图片
         select_file: 选择文件
+        add_more: ~
         removing: 移除中……
         processing: 处理中……
         loading_image: 正在加载……
+        image_uploading_in_progress: ~
+        processing_takes_a_while: ~
         this_may_take_a_while: （这可能会花一些时间）
         percentage_loaded: "%{percentage}%"
         uploading_failed: 图片加载出错
         file_too_large: 文件太大
         accepted_formats: "图片必须是GIF,JPG或PNG格式。"
+        images_not_uploaded_confirm: ~
       location:
         location: 地点
       price:
@@ -1555,6 +1569,7 @@ zh-TW:
       booking_from: 从
       booking_to: 到
       how_paypal_works: PayPal如何工作
+      payment_help: ~
     new:
       post_a_new_listing: 发布信息
       listing: 信息

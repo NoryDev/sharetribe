@@ -238,6 +238,7 @@ el:
         ban_user: ~
         saving_user_status: ~
         save_user_status_successful: ~
+        export_all_as_csv: ~
         save_user_status_error: ~
         ban_user_confirmation: ~
         ban_me_error: ~
@@ -276,6 +277,7 @@ el:
         url: ~
         empty: ~
       transactions:
+        export_all_as_csv: ~
         transactions: ~
         headers:
           conversation: ~
@@ -1171,6 +1173,8 @@ el:
       list_button: Λίστα
       all_listing_types: "Όλοι τύποι καταχωρήσεων"
       all_categories: "Όλες οι κατηγορίες"
+    errors:
+      search_engine_not_responding: ~
   infos:
     about:
       default_about_text_title: "Τι είναι το Sharetribe;"
@@ -1324,6 +1328,7 @@ el:
       you_are_not_allowed_to_give_feedback_on_this_transaction: "Δεν έχεις δικαίωμα να κάνεις κριτική για αυτό το συμβάν"
       you_are_not_authorized_to_do_this: "Δεν έχεις δικαίωμα να το κάνεις αυτό"
       you_are_not_authorized_to_view_this_content: "Δεν έχεις δικαίωμα να δεις αυτό το περιεχόμενο"
+      listing_closed: ~
       send_instructions: "Σε λίγα λεπτά θα λάβετε ένα email με οδηγίες για το πως να επαναφέρετε τον κωδικό πρόσβασης σας."
       you_cannot_reply_to_a_closed_offer: "Δεν μπορείς να απαντήσεις σε μία προσφορά που έχει κλείσει"
       you_cannot_reply_to_a_closed_request: "Δεν μπορείς να απαντήσεις σε ένα αίτημα που έχει κλείσει"
@@ -1372,6 +1377,8 @@ el:
     comment:
       wrote: έγραψε
       send_private_message: "Στείλε προσωπικό στον/στην %{person}."
+      delete: ~
+      are_you_sure: ~
     comment_form:
       ask_a_question: "Σχολίασε την καταχώρηση ή ζήτα περισσότερες πληροφορίες. Το σχόλιό σου είναι ορατό σε όλους τους χρήστες."
       log_in: συνδεθείς
@@ -1392,6 +1399,8 @@ el:
       show_in_updates_email_loading: ~
       show_in_updates_email_error: ~
       show_in_updates_email_success: ~
+    map:
+      open_in_google_maps: ~
     error:
       something_went_wrong: ~
     follow_links:
@@ -1425,17 +1434,22 @@ el:
         googlemap_updatemap: "Ενημέρωση του χάρτη"
       images:
         image: Εικόνα
+        best_result: ~
         no_file_selected: "Δεν έχει επιλεγεί αρχείο"
         remove_image: "Κατάργηση εικόνας"
         select_file: "Επιλέξτε αρχείο"
+        add_more: ~
         removing: ~
         processing: ~
         loading_image: ~
+        image_uploading_in_progress: ~
+        processing_takes_a_while: ~
         this_may_take_a_while: ~
         percentage_loaded: ~
         uploading_failed: ~
         file_too_large: ~
         accepted_formats: "Το αρχείο εικόνας πρέπει να είναι σε μορφή GIF, JPEG ή PNG."
+        images_not_uploaded_confirm: ~
       location:
         location: Τοποθεσία
       price:
@@ -1535,6 +1549,7 @@ el:
       booking_from: ~
       booking_to: ~
       how_paypal_works: ~
+      payment_help: ~
     new:
       post_a_new_listing: "Νέα καταχώρηση"
       listing: καταχώρηση

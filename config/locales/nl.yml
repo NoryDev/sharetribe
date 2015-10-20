@@ -253,6 +253,7 @@ nl:
         ban_user: "Verban gebruiker"
         saving_user_status: Opslaan...
         save_user_status_successful: Opgeslagen
+        export_all_as_csv: ~
         save_user_status_error: "Opslaan mislukt. Vernieuw de pagina en probeer opnieuw."
         ban_user_confirmation: "Dit verwijdert de gebruiker van de marktplaats en belet hem de site opnieuw te gebruiken met deze account. Ben je zeker dat je verder wil gaan?"
         ban_me_error: "Je kunt jezelf niet uitsluiten."
@@ -291,6 +292,7 @@ nl:
         url: URL
         empty: "Je hebt geen bijkomende menu koppelingen"
       transactions:
+        export_all_as_csv: ~
         transactions: "Bekijk transacties"
         headers:
           conversation: Conversatie
@@ -1186,6 +1188,8 @@ nl:
       list_button: Lijst
       all_listing_types: "Alle advertentietypes"
       all_categories: "Alle categorieën"
+    errors:
+      search_engine_not_responding: ~
   infos:
     about:
       default_about_text_title: "Wat is Sharetribe?"
@@ -1339,6 +1343,7 @@ nl:
       you_are_not_allowed_to_give_feedback_on_this_transaction: "Je hebt geen toestemming om feedback te geven over dit evenement"
       you_are_not_authorized_to_do_this: "Je hebt geen toestemming om dit te doen"
       you_are_not_authorized_to_view_this_content: "Je hebt geen toestemming om deze inhoud te zien"
+      listing_closed: ~
       send_instructions: "U ontvangt binnen enkele minuten een e-mail met instructies om uw wachtwoord te resetten."
       you_cannot_reply_to_a_closed_offer: "Je kan niet reageren op een gesloten aanbod"
       you_cannot_reply_to_a_closed_request: "Je kan niet reageren op een gesloten verzoek"
@@ -1387,6 +1392,8 @@ nl:
     comment:
       wrote: schreef
       send_private_message: "Verstuur privé bericht naar %{person}"
+      delete: ~
+      are_you_sure: ~
     comment_form:
       ask_a_question: "Plaats een reactie als u meer wilt weten over dit item. Andere gebruikers kunnen uw reactie zien."
       log_in: "log in"
@@ -1407,6 +1414,8 @@ nl:
       show_in_updates_email_loading: Laden...
       show_in_updates_email_error: "Kan de server niet bereiken. Probeer opnieuw na herladen van de pagina."
       show_in_updates_email_success: "Dit item zal getoond worden in de volgende automatische update e-mail die naar gebruikers verstuurd wordt"
+    map:
+      open_in_google_maps: ~
     error:
       something_went_wrong: ~
     follow_links:
@@ -1440,17 +1449,22 @@ nl:
         googlemap_updatemap: "Update kaart"
       images:
         image: Foto
+        best_result: ~
         no_file_selected: "Geen bestand geselecteerd"
         remove_image: "Verwijder afbeelding"
         select_file: "Selecteer bestand"
+        add_more: ~
         removing: Verwijderen...
         processing: Verwerken...
         loading_image: Laden...
+        image_uploading_in_progress: ~
+        processing_takes_a_while: ~
         this_may_take_a_while: "(dit kan even duren)"
         percentage_loaded: "%{percentage}%"
         uploading_failed: "Opladen afbeelding mislukt"
         file_too_large: "Bestand is te groot"
         accepted_formats: "Het bestandsformaat moet GIF, JPG of PNG zijn."
+        images_not_uploaded_confirm: ~
       location:
         location: Locatie
       price:
@@ -1550,6 +1564,7 @@ nl:
       booking_from: Van
       booking_to: Tot
       how_paypal_works: "Hoe PayPal werkt"
+      payment_help: ~
     new:
       post_a_new_listing: "Plaats een nieuw item"
       listing: Item

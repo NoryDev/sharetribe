@@ -29,7 +29,27 @@ class PeopleController < Devise::RegistrationsController
     redirect_to url_for(params.merge(:locale => nil)) and return if params[:locale] # This is an important URL to keep pretty
     @selected_tribe_navi_tab = "members"
     @community_membership = CommunityMembership.find_by_person_id_and_community_id_and_status(@person.id, @current_community.id, "accepted")
-    @listings = persons_listings(@person)
+
+    include_closed = @current_user == @person && params[:show_closed]
+    search = {
+      author_id: @person.id,
+      include_closed: include_closed,
+      page: 1,
+      per_page: 6
+    }
+
+    includes = [:author, :listing_images]
+    listings = ListingIndexService::API::Api.listings.search(community_id: @current_community.id, search: search, includes: includes).and_then { |res|
+      Result::Success.new(
+        ListingIndexViewUtils.to_struct(
+        result: res,
+        includes: includes,
+        page: search[:page],
+        per_page: search[:per_page]
+      ))
+    }.data
+
+    render locals: { listings: listings }
   end
 
   def new
@@ -186,7 +206,23 @@ class PeopleController < Devise::RegistrationsController
     @person.set_emails_that_receive_notifications(params[:person][:send_notifications])
 
     begin
-      if @person.update_attributes(params[:person])
+      person_params = params[:person].slice(
+        :given_name,
+        :family_name,
+        :street_address,
+        :phone_number,
+        :image,
+        :description,
+        :location,
+        :password,
+        :password2,
+        :send_notifications,
+        :email_attributes,
+        :min_days_between_community_updates,
+        :preferences,
+      )
+
+      if @person.update_attributes(person_params)
         if params[:person][:password]
           #if password changed Devise needs a new sign in.
           sign_in @person, :bypass => true

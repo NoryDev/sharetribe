@@ -26,6 +26,8 @@
 .left-navi-section
   %h2= t("admin.communities.manage_members.manage_members", :community_name => @community.name(I18n.locale))
 
+  #export-as-csv.right= link_to(" " + t("admin.communities.manage_members.export_all_as_csv"), {format: :csv}, {class: "js-users-csv-export " + icon_class("download")})
+
   %span#admin_members_count= page_entries_info(@memberships, :model => "Person")
 
   %form
@@ -42,17 +44,18 @@
       %tbody
         - @memberships.each do |membership|
           - member = membership.person
-          %tr
-            %td.admin-members-full-name
-              = link_to member.full_name, member
-            %td
-              = mail_to member.confirmed_notification_email_addresses.first
-            %td= l(membership.created_at, :format => :short_date)
-            - if @current_community.require_verification_to_post_listings
-              %td{:style => "text-align: center"}= check_box_tag "posting-allowed[#{member.id}]", member.id, membership.can_post_listings, :class => "admin-members-can-post-listings"
-            %td{:style => "text-align: center"}= check_box_tag "is_admin[#{member.id}]", member.id, member.is_admin_of?(@community), :class => "admin-members-is-admin", :disabled => member.eql?(@current_user)
-            %td{:style => "text-align: center"}
-              = link_to(icon_tag("cross"), ban_admin_community_community_membership_path(@current_community.id, membership.id), method: :put, :data => {:confirm => t("admin.communities.manage_members.ban_user_confirmation")}, :class => "admin-members-remove-user")
+          - unless member.blank?
+            %tr
+              %td.admin-members-full-name
+                = link_to member.full_name, member
+              %td
+                = mail_to member.confirmed_notification_email_addresses.first
+              %td= l(membership.created_at, :format => :short_date)
+              - if @current_community.require_verification_to_post_listings
+                %td{:style => "text-align: center"}= check_box_tag "posting-allowed[#{member.id}]", member.id, membership.can_post_listings, :class => "admin-members-can-post-listings"
+              %td{:style => "text-align: center"}= check_box_tag "is_admin[#{member.id}]", member.id, member.is_admin_of?(@community), :class => "admin-members-is-admin", :disabled => member.eql?(@current_user)
+              %td{:style => "text-align: center"}
+                = link_to(icon_tag("cross"), ban_admin_community_community_membership_path(@current_community.id, membership.id), method: :put, :data => {:confirm => t("admin.communities.manage_members.ban_user_confirmation")}, :class => "admin-members-remove-user")
 
   .row
     .col-12

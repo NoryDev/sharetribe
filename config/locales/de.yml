@@ -50,7 +50,7 @@ de:
     communities:
       edit_details:
         community_details: Community-Angaben
-        community_look_and_feel: "Community \"Look and Feel\""
+        community_look_and_feel: Design
         edit_community: "Bearbeite die Community-Details für %{community_name}"
         enabled_languages: ~
         enabled_languages_description: ~
@@ -130,7 +130,7 @@ de:
         sender_address_default: "Absender Adresse: nicht festgelegt (verwendet wird die Standard Email %{sender_address})"
         need_to_change: "Wenn Du die Email Adresse ändern möchtest, kontaktiere bitte %{contact_support_link}."
         contact_support_link_text: "Kontaktiere unseren Support"
-        set_sender_address: "Lege eine Absender Adresse fest"
+        set_sender_address: "Lege eine absender adresse fest"
         sender_name_label: Name
         sender_name_placeholder: Absender
         sender_email_label: "Email Adresse"
@@ -253,6 +253,7 @@ de:
         ban_user: "Nutzer sperren"
         saving_user_status: Speichern...
         save_user_status_successful: Gespeichert
+        export_all_as_csv: "Exportiere Alles als CSV Datei"
         save_user_status_error: "Speichern fehlgeschlagen. Bitte erneuere die Seite und versuch es noch einmal."
         ban_user_confirmation: ~
         ban_me_error: "Du kannst dich nicht selber sperren."
@@ -291,6 +292,7 @@ de:
         url: URL
         empty: "Du hast keine zusätzlichen Menü-Links"
       transactions:
+        export_all_as_csv: "Exportiere Alles als CSV Datei"
         transactions: "Transaktionen anzeigen"
         headers:
           conversation: Unterhaltungsverlauf
@@ -540,8 +542,14 @@ de:
     removed_user: "Entfernter Benutzer"
     paypal_fee_info:
       title: PayPal-Zahlungsbearbeitungsgebühr
-      body_text: ~
-      body_with_shipping_text: ~
+      body_text: |-
+          PayPal erhebt eine Transaktionsgebühr auf jede Zahlung. Diese Gebühr liegt in Deutschland bei maximal 1,9% + 0,35 € pro inländischer Transaktion (sie ist geringer bei höheren Umsätzen). 
+          Wenn Du Dich bei Deinem Paypal Account anmeldest, erhälst Du unter dieser Adresse %{link_to_paypal} mehr Informationen auch zu internationalen Zahlungen.
+          Nach jeder Transaktion bekommst Du einen Beleg mit der exakten Gebühr.
+      body_with_shipping_text: |-
+          PayPal erhebt eine Transaktionsgebühr auf jede Zahlung. Diese Gebühr liegt in Deutschland bei maximal 1,9% + 0,35 € pro inländischer Transaktion (sie ist geringer bei höheren Umsätzen). 
+          Wenn Du Dich bei Deinem Paypal Account anmeldest, erhälst Du unter dieser Adresse %{link_to_paypal} mehr Informationen auch zu internationalen Zahlungen.
+          Nach jeder Transaktion bekommst Du einen Beleg mit der exakten Gebühr.
       link_to_paypal_text: hier
   conversations:
     accept:
@@ -601,7 +609,7 @@ de:
       canceled_offer: "Angebot abgebrochen"
       message_from: "Nachricht von %{person}"
       about_listing: "In Bezug auf %{listing_title}"
-      free_message: "Kostenlose Nachricht"
+      free_message: Nachricht
     message:
       accepted_request: "Anfrage akzeptiert"
       accepted_offer: "Angebot akzeptieren"
@@ -763,7 +771,7 @@ de:
       confirm_payment: "Zahlung bestätigen"
       exp: ~
   feedback:
-    feedback_subject: "Neue Bewertung von %{service_name}"
+    feedback_subject: "Neue Nachricht von %{service_name}"
     feedback_body: "%{author_name_and_email} hat Dir die folgende Nachricht auf %{service_name} gesendet"
     unlogged_user: "Nicht angemeldeter Nutzer"
     anonymous_user: "Anonymer Benutzer"
@@ -814,7 +822,7 @@ de:
       cancel_it_link_text: Abbrechen
     payment_settings_reminder:
       remember_to_add_payment_details: "Denke daran, deine Zahlungsdetails hinzuzufügen, um Zahlungen erhalten zu können"
-      you_have_added_listing_with_payment: "Du hast unter %{listing_link} einen Eintrag mit Bezahlung hinzugefügt. Leider hast du noch keine Zahlungsinformationen hinzugefügt. Um Zahlungen erhalten zu können, musst du deine Zahlungsinformationen hinzufügen."
+      you_have_added_listing_with_payment: "Du hast unter %{listing_link} einen Eintrag mit Bezahlung hinzugefügt. Leider hast Du noch keine Zahlungsinformationen angegeben. Um Zahlungen erhalten zu können, musst Du Deine Zahlungsinformationen hinterlegen."
       please_go_to_payment_settings: "Bitte geh zu %{payment_settings_link} und fülle die erforderlichen Zahlungsinformationen aus."
       payment_settings_link: Zahlungseinstellungen
     transaction_confirmed:
@@ -887,7 +895,7 @@ de:
     new_message:
       view_message: "Nachricht ansehen"
       has_sent_you_a_message_in_kassi: "%{sender} hat dir eine Nachricht auf %{service_name} gesendet."
-      you_have_a_new_message: "Du hast eine neue Nachricht von %{sender_name} auf %{service_name}"
+      you_have_a_new_message: "Du hast eine neue Nachricht von %{sender_name} von %{service_name}"
     new_payment:
       new_payment: "Du hast eine neue Zahlung erhalten"
       price_per_unit_type: "Preis pro %{unit_type}"
@@ -1105,8 +1113,8 @@ de:
       items_to_request: "Artikel zum Ausleihen: "
       log_in: "Melde Dich an!"
       no_offers_visible_unless_logged_in: "Kein Eintrag, Angebote sind für nur für angemeldete Nutzer sichtbar."
-      no_open_offers_currently: "Keine Angebote zu Gegenständen, Dienstleistungen oder Mitfahrgelegenheiten vorhanden."
-      no_open_requests_currently: "Keine Anfragen zu Gegenständen, Dienstleistungen oder Mitfahrgelegenheiten vorhanden."
+      no_open_offers_currently: "Keine angebote zu gegenständen, dienstleistungen oder mitfahrgelegenheiten vorhanden."
+      no_open_requests_currently: "Keine anfragen zu gegenständen, dienstleistungen oder mitfahrgelegenheiten vorhanden."
       no_requests_visible_unless_logged_in: "Kein Eintrag, Angebote sind für nur für angemeldete Nutzer sichtbar."
       one_private_offer_exists: "Es gibt bereits <b>ein Angebot</b>,"
       one_private_request_exists: "Es gibt bereits <b>eine Anfrage</b>,"
@@ -1186,6 +1194,8 @@ de:
       list_button: Liste
       all_listing_types: "Alle Einträge"
       all_categories: "Alle Kategorien"
+    errors:
+      search_engine_not_responding: "Die Suchfunktion ist derzeit nicht verfügbar. Bitte versuche es später noch einmal."
   infos:
     about:
       default_about_text_title: "Was ist Sharetribe?"
@@ -1305,7 +1315,7 @@ de:
       offer_canceled: "Angebot abgebrochen"
       listing_updated_successfully: "Eintrag wurde erfolgreich aktualisiert"
       only_kassi_administrators_can_access_this_area: "Nur  %{service_name} Administratoren können diesen Bereich aufrufen"
-      only_listing_author_can_close_a_listing: "Nur Autoren eines Eintrags können den Eintrag beenden"
+      only_listing_author_can_close_a_listing: "Nur Autoren können ein Angebot pausieren"
       only_listing_author_can_edit_a_listing: "Nur Autoren eines Eintrags können den Eintrag bearbeiten"
       payment_successful: "erfolgreiche Bezahlung"
       payment_canceled: "Zahlung abgebrochen"
@@ -1339,6 +1349,7 @@ de:
       you_are_not_allowed_to_give_feedback_on_this_transaction: "Du bist nicht berechtigt, Feedback zu dieser Transaktion zu geben"
       you_are_not_authorized_to_do_this: "Du bist nicht berechtigt, dies zu tun"
       you_are_not_authorized_to_view_this_content: "Du bist nicht berechtigt, diesen Inhalt zu sehen"
+      listing_closed: "Dieses Angebot wurde entfernt"
       send_instructions: "Du wirst in einigen Minuten eine E-Mail erhalten mit Anweisungen zum Zurücksetzen deines Passworts."
       you_cannot_reply_to_a_closed_offer: "Du kannst nicht auf ein beendetes Angebot antworten."
       you_cannot_reply_to_a_closed_request: "Du kannst nicht auf eine beendete Anfrage antworten."
@@ -1373,7 +1384,7 @@ de:
       email_deleted: "E-Mail entfernt"
       payment_details_add_successful: "Zahlungsdetails erfolgreich hinzugefügt"
       payment_details_add_error: "Zahlungsdetails konnten nicht hinzugefügt werden"
-      listing_author_payment_details_missing: "Der Verfasser des Angebotes hat seine Zahlungsdaten nicht hinzugefügt, dadurch können im Moment keine Zahlungen empfangen werden. Bitte kontaktiere deswegen den Verfasser."
+      listing_author_payment_details_missing: "Leider kann dieser Anbieter keine Zahlungen empfangen, da er seine Zahlungsdaten noch angeben muss. Bitte kontaktiere ihn über das Kontakt Feld unten."
       stylesheet_needs_recompiling: "Die Stylesheets werden neu kompiliert. Bitte lade die Seite nach einer Weile neu."
     settings:
       account: Konto
@@ -1387,6 +1398,8 @@ de:
     comment:
       wrote: schrieb
       send_private_message: "Private Nachricht an %{person} senden"
+      delete: ~
+      are_you_sure: ~
     comment_form:
       ask_a_question: "Kommentiere den Eintrag und frage nach mehr Details. Alle anderen Mitglieder werden deine Kommentare sehen."
       log_in: Anmelden
@@ -1399,7 +1412,7 @@ de:
     edit:
       edit_listing: "Eintrag bearbeiten"
     edit_links:
-      close_listing: "Eintrag beenden"
+      close_listing: "Angebot pausieren"
       edit_listing: "Eintrag bearbeiten"
       reopen_listing: "Eintrag wieder aktivieren"
       move_to_top: "Auf der Homepage nach oben verschieben"
@@ -1407,6 +1420,8 @@ de:
       show_in_updates_email_loading: Lädt...
       show_in_updates_email_error: "Der Server konnte nicht erreicht werden. Lade die Seite neu und versuche es erneut."
       show_in_updates_email_success: ~
+    map:
+      open_in_google_maps: "In Google Maps öffnen"
     error:
       something_went_wrong: "Etwas ist schief gelaufen, Fehlercode: %{error_code}"
     follow_links:
@@ -1440,17 +1455,22 @@ de:
         googlemap_updatemap: "Karte aktualisieren"
       images:
         image: Bild
+        best_result: "Für eine optimale Darstellung lade Bilder im JPEG, GIF oder PNG Format mit des Maßen %{width}x%{height} Pixel hoch"
         no_file_selected: "Keine Datei ausgewählt"
         remove_image: "Bild entfernen"
         select_file: "Datei wählen"
+        add_more: "+ Weitere hinzufügen"
         removing: Entfernen...
         processing: "Wird bearbeitet..."
         loading_image: Lädt...
+        image_uploading_in_progress: "Bilder werden hochgeladen..."
+        processing_takes_a_while: "Alle Bilder wurden erfolgreich hochgeladen! Es dauert nun ein wenig, bis die Bilder verarbeitet sind, aber das Sichern des Eintrags und Weiterarbeiten ist problemlos möglich."
         this_may_take_a_while: "(dies kann eine Weile dauern)"
         percentage_loaded: "%{percentage}%"
         uploading_failed: "Bild hochladen fehlgeschlagen"
         file_too_large: "Die Datei ist zu groß."
         accepted_formats: "Die Bilddatei muss entweder im GIF-, JPG- oder PNG-Format vorliegen."
+        images_not_uploaded_confirm: "Es sind noch nicht alle Bilder hochgeladen. Möchtest Du wirklich fortfahren?"
       location:
         location: Standort
       price:
@@ -1550,6 +1570,7 @@ de:
       booking_from: Von
       booking_to: Bis
       how_paypal_works: "Wie PayPal funktioniert"
+      payment_help: "Hilfe beim Bezahlen"
     new:
       post_a_new_listing: "Einen neuen Eintrag erstellen"
       listing: Eintrag
@@ -1772,9 +1793,9 @@ de:
       username_is_invalid: "Der Benutzername ist ungültig. Erlaubte Zeichen sind Buchstaben (keine Umlaute), Ziffern und Unterstriche."
       visible_only_to_you: "nur für dich und den Admin der Community sichtbar"
       visible_to_everybody: "für jeden sichtbar"
-      create_account_with_facebook: "Lege ein Account mit Facebook an"
+      create_account_with_facebook: "Lege einen Account mit Facebook an"
       OR: ODER
-      signup_with_email: "Registriere dich mit deiner E-Mail-Adresse"
+      signup_with_email: "Registriere Dich mit Deiner E-Mail-Adresse"
     not_member:
       explanation_text: "Du befindest dich derzeit bei %{community}. Du hast versucht, das Profil eines Benutzers aus einer anderen Community anzuzeigen. Du kannst dieses Profil nicht über %{community} direkt einsehen."
       read_more_about_kassi_communities: "Lies mehr über Sharetribe-Communities"
@@ -1858,7 +1879,7 @@ de:
       cancle_facebook_connect: "Wenn du dieses Konto nicht verbinden willst, kannst du %{cancel_link}."
       facebook_cancel_link_text: abbrechen
       log_in_with_your_facebook_account: "Melde dich mit deinem Facebook-Konto an"
-      or_sign_up_with_your_username: "...oder mit deinem Benutzernamen oder dem Passwort:"
+      or_sign_up_with_your_username: "...oder mit Deinem Benutzernamen und Passwort:"
       we_will_not_post_without_asking_you: "Wir werden deine Nachrichten nie auf Facebook posten ohne vorher zu fragen."
     password_forgotten:
       email: E-Mail

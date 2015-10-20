@@ -66,10 +66,12 @@ module ApplicationHelper
       "send" => "ss-send",
       "form" => "ss-form",
       "link" => "ss-link",
+      "external_link" => "ss-action",
       "social_media" => "ss-share",
       "analytics" => "ss-analytics",
       "openbook" => "ss-openbook",
       "order_types" => "ss-cart",
+      "download" => "ss-download",
 
       # Default category & share type icons
       "offer" => "ss-share",
@@ -185,6 +187,9 @@ module ApplicationHelper
       "settings" => " icon-cog",
       "facebook" => "icon-facebook",
       "invite" => "icon-users",
+      "download" => "icon-download",
+      "link" => "icon-link",
+      "external_link" => "icon-external-link",
 
       "information" => "icon-info-sign",
       "alert" => "icon-warning-sign",
